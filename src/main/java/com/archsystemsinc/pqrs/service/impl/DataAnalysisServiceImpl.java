@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.archsystemsinc.pqrs.model.DataAnalysis;
+import com.archsystemsinc.pqrs.model.SubDataAnalysis;
 import com.archsystemsinc.pqrs.repository.DataAnalaysisRepository;
 import com.archsystemsinc.pqrs.service.DataAnalysisService;
 
@@ -25,7 +26,7 @@ public class DataAnalysisServiceImpl implements DataAnalysisService {
 		// TODO Auto-generated method stub
 		//return dataAnalaysisRepository.findOne(Long.valueOf(id));
 		return dataAnalaysisRepository.findById(id);
-	}
+	}	
 
 //	@Override
 //	public List<DataAnalysis> findAllByHypoId(Long id) {

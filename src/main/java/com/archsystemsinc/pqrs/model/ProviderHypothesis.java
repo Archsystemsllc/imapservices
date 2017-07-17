@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  * 
  */
 @Entity
-@Table(name="provider_Hypothesis")
+@Table(name="provider_hypothesis")
 @NamedQuery(name="ProviderHypothesis.findAll", query="SELECT p FROM ProviderHypothesis p")
 public class ProviderHypothesis implements Serializable {
 	private static final long serialVersionUID = 1L;
