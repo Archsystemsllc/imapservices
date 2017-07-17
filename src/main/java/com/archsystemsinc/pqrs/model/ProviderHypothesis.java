@@ -35,7 +35,7 @@ public class ProviderHypothesis implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int id;
 
-	@Column(name="no_count")
+	@Column(name="no_count") 
 	private BigInteger noCount;
 
 	@Column(name="no_percent")
