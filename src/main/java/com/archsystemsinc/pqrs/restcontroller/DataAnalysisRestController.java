@@ -7,11 +7,14 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.archsystemsinc.pqrs.model.DataAnalysis;
+import com.archsystemsinc.pqrs.model.SubDataAnalysis;
 import com.archsystemsinc.pqrs.service.DataAnalysisService;
 import com.archsystemsinc.pqrs.service.SubDataAnalysisService;
 
@@ -39,5 +42,10 @@ public class DataAnalysisRestController {
 		log.debug("<-- barChartDisplay");
         return dataAnalysisList;
     }
+	
+	@RequestMapping(value = "/dataanalysis/{dataId}", method = RequestMethod.GET)
+	public DataAnalysis getSubDataAnalysisById(@PathVariable int dataId, HttpServletRequest request, Principal currentUser,final Model model){		
+		return dataAnalysisService.findById(dataId);
+	}
 
 }

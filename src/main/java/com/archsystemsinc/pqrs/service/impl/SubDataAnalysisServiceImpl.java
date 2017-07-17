@@ -38,10 +38,7 @@ public class SubDataAnalysisServiceImpl implements SubDataAnalysisService {
 
 	@Override
 	public SubDataAnalysis findById(int id) {
-		// TODO Auto-generated method stub
 		return subDataAnalysisRepository.findById(id);
-	}
-
-	
+	}	
 
 }
