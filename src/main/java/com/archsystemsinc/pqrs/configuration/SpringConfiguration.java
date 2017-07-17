@@ -13,18 +13,4 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 @ComponentScan(basePackages = "com.archsystemsinc.pqrs")
 public class SpringConfiguration extends WebMvcConfigurerAdapter{
 	
-	@Bean
-	public static PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
-		String activeProfile = System.getProperty("spring.profiles.active",
-				"local");
-		String propertiesFilename = "application-" + activeProfile
-				+ ".properties";
-		System.out.println("propertiesFilename:" + propertiesFilename);
-		PropertySourcesPlaceholderConfigurer configurer = new PropertySourcesPlaceholderConfigurer();
-		configurer.setLocation(new ClassPathResource(propertiesFilename));
-
-		return configurer;
-	}
-
-
 }
