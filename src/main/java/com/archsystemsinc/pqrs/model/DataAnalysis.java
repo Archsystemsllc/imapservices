@@ -17,7 +17,6 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
 /**
  * The persistent class for the data_analysis database table.
  * 
@@ -39,15 +38,25 @@ public class DataAnalysis implements Serializable {
 	@Column(name="data_analysis_name")
 	private String dataAnalysisName;
 
-//	//bi-directional many-to-one association to ProviderHypothesi
+	//bi-directional many-to-one association to ProviderHypothesis
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "dataAnalysis", cascade = CascadeType.ALL)
 	private List<ProviderHypothesis> providerHypothesis;
-//
-//	//bi-directional many-to-one association to SubDataAnalysi
+
+	//bi-directional many-to-one association to StatewiseStatistic
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "dataAnalysis", cascade = CascadeType.ALL)
+	private List<StatewiseStatistic> statewiseStatistics;
+	
+	//bi-directional many-to-one association to SubDataAnalysis
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "dataAnalysis", cascade = CascadeType.ALL)
 	private List<SubDataAnalysis> subDataAnalysis;
+	
+	//bi-directional many-to-one association to ExclusionTrend
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "dataAnalysis", cascade = CascadeType.ALL)
+	private List<ExclusionTrend> exclusionTrends;
 
 	public DataAnalysis() {
 	}
@@ -99,6 +108,29 @@ public class DataAnalysis implements Serializable {
 	}
 	
 	@JsonIgnore
+	public List<StatewiseStatistic> getStatewiseStatistics() {
+		return this.statewiseStatistics;
+	}
+
+	public void setStatewiseStatistics(List<StatewiseStatistic> statewiseStatistics) {
+		this.statewiseStatistics = statewiseStatistics;
+	}
+
+	public StatewiseStatistic addStatewiseStatistic(StatewiseStatistic statewiseStatistic) {
+		getStatewiseStatistics().add(statewiseStatistic);
+		statewiseStatistic.setDataAnalysis(this);
+
+		return statewiseStatistic;
+	}
+
+	public StatewiseStatistic removeStatewiseStatistic(StatewiseStatistic statewiseStatistic) {
+		getStatewiseStatistics().remove(statewiseStatistic);
+		statewiseStatistic.setDataAnalysis(null);
+
+		return statewiseStatistic;
+	}
+	
+	@JsonIgnore
 	public List<SubDataAnalysis> getSubDataAnalysis() {
 		return this.subDataAnalysis;
 	}
@@ -119,6 +151,29 @@ public class DataAnalysis implements Serializable {
 		subDataAnalysis.setDataAnalysis(null);
 
 		return subDataAnalysis;
+	}
+	
+	@JsonIgnore
+	public List<ExclusionTrend> getExclusionTrends() {
+		return this.exclusionTrends;
+	}
+
+	public void setExclusionTrends(List<ExclusionTrend> exclusionTrends) {
+		this.exclusionTrends = exclusionTrends;
+	}
+
+	public ExclusionTrend addExclusionTrend(ExclusionTrend exclusionTrend) {
+		getExclusionTrends().add(exclusionTrend);
+		exclusionTrend.setDataAnalysis(this);
+
+		return exclusionTrend;
+	}
+
+	public ExclusionTrend removeExclusionTrend(ExclusionTrend exclusionTrend) {
+		getExclusionTrends().remove(exclusionTrend);
+		exclusionTrend.setDataAnalysis(null);
+
+		return exclusionTrend;
 	}
 
 }

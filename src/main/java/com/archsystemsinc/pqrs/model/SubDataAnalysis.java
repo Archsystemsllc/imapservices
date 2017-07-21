@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 /**
@@ -31,6 +32,9 @@ public class SubDataAnalysis implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private int id;
+	
+	@Column(name="on_screen_help_text")
+	private String onScreenHelpText;
 
 	@Column(name="sub_data_analysis_description")
 	private String subDataAnalysisDescription;
@@ -42,11 +46,20 @@ public class SubDataAnalysis implements Serializable {
 	@OneToMany(mappedBy="subDataAnalysis")
 	private List<ProviderHypothesis> providerHypothesis;
 
+	//bi-directional many-to-one association to StatewiseStatistic
+	@OneToMany(mappedBy="subDataAnalysis")
+	private List<StatewiseStatistic> statewiseStatistics;
+	
+	//bi-directional many-to-one association to ExclusionTrend
+	@JsonManagedReference
+	@OneToMany(mappedBy="subDataAnalysis")
+	private List<ExclusionTrend> exclusionTrends;
+	
 	//bi-directional many-to-one association to DataAnalysi
 	@ManyToOne
 	@JoinColumn(name="data_analysis_id")
 	private DataAnalysis dataAnalysis;
-
+	
 	public SubDataAnalysis() {
 	}
 
@@ -58,6 +71,14 @@ public class SubDataAnalysis implements Serializable {
 		this.id = id;
 	}
 
+	public String getOnScreenHelpText() {
+		return this.onScreenHelpText;
+	}
+
+	public void setOnScreenHelpText(String onScreenHelpText) {
+		this.onScreenHelpText = onScreenHelpText;
+	}
+	
 	public String getSubDataAnalysisDescription() {
 		return this.subDataAnalysisDescription;
 	}
@@ -95,6 +116,53 @@ public class SubDataAnalysis implements Serializable {
 
 		return providerHypothesis;
 	}
+	
+	@JsonIgnore
+	public List<StatewiseStatistic> getStatewiseStatistics() {
+		return this.statewiseStatistics;
+	}
+
+	public void setStatewiseStatistics(List<StatewiseStatistic> statewiseStatistics) {
+		this.statewiseStatistics = statewiseStatistics;
+	}
+
+	public StatewiseStatistic addStatewiseStatistic(StatewiseStatistic statewiseStatistic) {
+		getStatewiseStatistics().add(statewiseStatistic);
+		statewiseStatistic.setSubDataAnalysis(this);
+
+		return statewiseStatistic;
+	}
+
+	public StatewiseStatistic removeStatewiseStatistic(StatewiseStatistic statewiseStatistic) {
+		getStatewiseStatistics().remove(statewiseStatistic);
+		statewiseStatistic.setSubDataAnalysis(null);
+
+		return statewiseStatistic;
+	}
+	
+	@JsonIgnore
+	public List<ExclusionTrend> getExclusionTrends() {
+		return this.exclusionTrends;
+	}
+
+	public void setExclusionTrends(List<ExclusionTrend> exclusionTrends) {
+		this.exclusionTrends = exclusionTrends;
+	}
+
+	public ExclusionTrend addExclusionTrend(ExclusionTrend exclusionTrend) {
+		getExclusionTrends().add(exclusionTrend);
+		exclusionTrend.setSubDataAnalysis(this);
+
+		return exclusionTrend;
+	}
+
+	public ExclusionTrend removeExclusionTrend(ExclusionTrend exclusionTrend) {
+		getExclusionTrends().remove(exclusionTrend);
+		exclusionTrend.setSubDataAnalysis(null);
+
+		return exclusionTrend;
+	}
+	
 	@JsonIgnore
 	public DataAnalysis getDataAnalysis() {
 		return this.dataAnalysis;

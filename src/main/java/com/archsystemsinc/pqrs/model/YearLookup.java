@@ -43,6 +43,11 @@ public class YearLookup implements Serializable {
 	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "yearLookup", cascade = CascadeType.ALL)
 	private Set<ProviderHypothesis> providerHypothesis;
+	
+	//bi-directional many-to-one association to ExclusionTrend
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "yearLookup", cascade = CascadeType.ALL)
+	private Set<ExclusionTrend> exclusionTrends;
 
 	public YearLookup() {
 	}
@@ -89,4 +94,27 @@ public class YearLookup implements Serializable {
 		return providerHypothesi;
 	}
 
+	@JsonIgnore
+	public Set<ExclusionTrend> getExclusionTrends() {
+		return this.exclusionTrends;
+	}
+
+	public void setExclusionTrends(Set<ExclusionTrend> exclusionTrends) {
+		this.exclusionTrends = exclusionTrends;
+	}
+
+	public ExclusionTrend addExclusionTrend(ExclusionTrend exclusionTrend) {
+		getExclusionTrends().add(exclusionTrend);
+		exclusionTrend.setYearLookup(this);
+
+		return exclusionTrend;
+	}
+
+	public ExclusionTrend removeExclusionTrend(ExclusionTrend exclusionTrend) {
+		getExclusionTrends().remove(exclusionTrend);
+		exclusionTrend.setYearLookup(null);
+
+		return exclusionTrend;
+	}
+	
 }

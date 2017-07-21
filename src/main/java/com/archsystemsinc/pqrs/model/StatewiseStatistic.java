@@ -36,6 +36,17 @@ public class StatewiseStatistic implements Serializable {
 	@Column(name="yes_or_nooption")
 	private int yesOrNooption;
 
+	//bi-directional many-to-one association to DataAnalysi
+	@ManyToOne
+	@JoinColumn(name="data_analysis_id")
+	private DataAnalysis dataAnalysis;
+
+	//bi-directional many-to-one association to SubDataAnalysi
+	@ManyToOne
+	@JoinColumn(name="sub_data_analysis_id")
+	private SubDataAnalysis subDataAnalysis;
+
+	
 	//bi-directional many-to-one association to ReportingOptionLookup
 	@ManyToOne
 	@JoinColumn(name="reporting_option_id")
@@ -97,6 +108,22 @@ public class StatewiseStatistic implements Serializable {
 		this.yesOrNooption = yesOrNooption;
 	}
 
+	public DataAnalysis getDataAnalysis() {
+		return this.dataAnalysis;
+	}
+
+	public void setDataAnalysis(DataAnalysis dataAnalysis) {
+		this.dataAnalysis = dataAnalysis;
+	}
+
+	public SubDataAnalysis getSubDataAnalysis() {
+		return this.subDataAnalysis;
+	}
+
+	public void setSubDataAnalysis(SubDataAnalysis subDataAnalysis) {
+		this.subDataAnalysis = subDataAnalysis;
+	}
+	
 	public ReportingOptionLookup getReportingOptionLookup() {
 		return this.reportingOptionLookup;
 	}
