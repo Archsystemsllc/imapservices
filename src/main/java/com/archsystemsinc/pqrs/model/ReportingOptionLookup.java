@@ -13,6 +13,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 
 /**
@@ -34,9 +35,15 @@ public class ReportingOptionLookup implements Serializable {
 	@Column(name="reporting_option_name")
 	private String reportingOptionName;
 
-	//bi-directional many-to-one association to Provider_Hypothesi
+	//bi-directional many-to-one association to Provider_Hypothesis
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "reportingOptionLookup", cascade = CascadeType.ALL)
 	private List<ProviderHypothesis> providerHypothesis;
+	
+	//bi-directional many-to-one association to ExclusionTrend
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="reportingOptionLookup" , cascade = CascadeType.ALL)
+	private List<ExclusionTrend> exclusionTrends;
 
 	public ReportingOptionLookup() {
 	}
@@ -77,6 +84,28 @@ public class ReportingOptionLookup implements Serializable {
 		providerHypothesi.setReportingOptionLookup(null);
 
 		return providerHypothesi;
+	}
+	
+	public List<ExclusionTrend> getExclusionTrends() {
+		return this.exclusionTrends;
+	}
+
+	public void setExclusionTrends(List<ExclusionTrend> exclusionTrends) {
+		this.exclusionTrends = exclusionTrends;
+	}
+
+	public ExclusionTrend addExclusionTrend(ExclusionTrend exclusionTrend) {
+		getExclusionTrends().add(exclusionTrend);
+		exclusionTrend.setReportingOptionLookup(this);
+
+		return exclusionTrend;
+	}
+
+	public ExclusionTrend removeExclusionTrend(ExclusionTrend exclusionTrend) {
+		getExclusionTrends().remove(exclusionTrend);
+		exclusionTrend.setReportingOptionLookup(null);
+
+		return exclusionTrend;
 	}
 
 }
