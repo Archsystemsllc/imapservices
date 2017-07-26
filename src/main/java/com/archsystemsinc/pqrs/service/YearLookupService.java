@@ -14,10 +14,10 @@ import com.archsystemsinc.pqrs.model.YearLookup;
  * @since 6/19/2017
  * 
  */
-public interface YearLookUpService {
+public interface YearLookupService {
 	
 	YearLookup findByYearName(final String yearName);
-	
+	YearLookup findById(final int id);	
 	List<YearLookup> findAll();
 
 }

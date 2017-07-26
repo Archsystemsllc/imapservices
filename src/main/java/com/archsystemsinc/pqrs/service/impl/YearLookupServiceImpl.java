@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.archsystemsinc.pqrs.model.YearLookup;
-import com.archsystemsinc.pqrs.repository.YearLookUpRepository;
-import com.archsystemsinc.pqrs.service.YearLookUpService;
+import com.archsystemsinc.pqrs.repository.YearLookupRepository;
+import com.archsystemsinc.pqrs.service.YearLookupService;
 
 /**
  * This is the implementation class of the Service interface for year_lookup database table.
@@ -20,26 +20,31 @@ import com.archsystemsinc.pqrs.service.YearLookUpService;
  * 
  */
 @Service
-public class YearLookUpServiceImpl implements YearLookUpService {
+public class YearLookupServiceImpl implements YearLookupService {
 
 	
 	@Autowired
-	private YearLookUpRepository yearLookUpRepository;
+	private YearLookupRepository yearLookupRepository;
 	
 	/** (non-Javadoc)
 	 * @see com.archsystemsinc.pqrs.service.YearLookUpservice#findByYearName(java.lang.String)
 	 */
 	@Override
 	public YearLookup findByYearName(String yearName) {
-		return yearLookUpRepository.findByYearName(yearName);
+		return yearLookupRepository.findByYearName(yearName);
 	}
 
 	/** (non-Javadoc)
-	 * @see com.archsystemsinc.pqrs.service.YearLookUpService#findAll()
+	 * @see com.archsystemsinc.pqrs.service.YearLookupService#findAll()
 	 */
 	@Override
 	public List<YearLookup> findAll() {
-		return yearLookUpRepository.findAll();
+		return yearLookupRepository.findAll();
+	}
+
+	@Override
+	public YearLookup findById(int id) {		
+		return yearLookupRepository.findById(id);
 	}
 
 }

@@ -22,7 +22,7 @@ import com.archsystemsinc.pqrs.repository.ParameterLookUpRepository;
 import com.archsystemsinc.pqrs.repository.ProviderHypothesisRepository;
 import com.archsystemsinc.pqrs.repository.ReportingOptionLookupRepository;
 import com.archsystemsinc.pqrs.repository.SubDataAnalysisRepository;
-import com.archsystemsinc.pqrs.repository.YearLookUpRepository;
+import com.archsystemsinc.pqrs.repository.YearLookupRepository;
 import com.archsystemsinc.pqrs.restcontroller.TestService;
 import com.archsystemsinc.pqrs.service.ProviderHypothesisService;
 
@@ -42,7 +42,7 @@ public class ProviderHypothesisServiceImpl implements ProviderHypothesisService 
 	private ProviderHypothesisRepository providerHypothesisRepository;
 	
 	@Autowired
-	private YearLookUpRepository yearLookUpRepository;
+	private YearLookupRepository yearLookUpRepository;
 	
 	@Autowired
 	private ReportingOptionLookupRepository reportingOptionLookupRepository;

@@ -40,7 +40,7 @@ import com.archsystemsinc.pqrs.service.ProviderHypothesisService;
 import com.archsystemsinc.pqrs.service.ReportingOptionLookUpService;
 import com.archsystemsinc.pqrs.service.SpecialityService;
 import com.archsystemsinc.pqrs.service.StatewiseStatisticService;
-import com.archsystemsinc.pqrs.service.YearLookUpService;
+import com.archsystemsinc.pqrs.service.YearLookupService;
 
 @RestController
 @RequestMapping("/api")
@@ -56,7 +56,7 @@ public class DocumentUploadRestController {
 	private ReportingOptionLookUpService reportingOptionLookUpService;
 	
 	@Autowired
-	private YearLookUpService yearLookUpService;
+	private YearLookupService yearLookupService;
 	
 	@Autowired
 	private SpecialityService specialtyService;
@@ -137,7 +137,7 @@ public class DocumentUploadRestController {
 								
 				                case Cell.CELL_TYPE_STRING:					                	
 				                    stringResult=hssfCell.getStringCellValue();
-				                    provider.setYearLookup(yearLookUpService.findByYearName(stringResult));
+				                    provider.setYearLookup(yearLookupService.findByYearName(stringResult));
 				                    System.out.println("Year name: " + stringResult);
 				                  
 				                    break;
@@ -314,7 +314,7 @@ public class DocumentUploadRestController {
 								
 				                case Cell.CELL_TYPE_STRING:
 				                	stringResult=hssfCell.getStringCellValue();
-				                	statewiseStatistic.setYearLookup(yearLookUpService.findByYearName(stringResult));				                   
+				                	statewiseStatistic.setYearLookup(yearLookupService.findByYearName(stringResult));				                   
 				                    break;	
 								
 								}
@@ -467,7 +467,7 @@ public class DocumentUploadRestController {
 								
 								case Cell.CELL_TYPE_STRING:
 									stringResult=hssfCell.getStringCellValue();										
-									specialty.setYearLookup(yearLookUpService.findByYearName(stringResult));									
+									specialty.setYearLookup(yearLookupService.findByYearName(stringResult));									
 				                    break;
 								
 								}

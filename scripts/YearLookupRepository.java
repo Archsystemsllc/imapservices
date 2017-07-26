@@ -11,8 +11,10 @@ import com.archsystemsinc.pqrs.model.YearLookup;
  * @since 6/19/2017
  * 
  */
-public interface YearLookUpRepository extends JpaRepository<YearLookup, Long> {
+public interface YearLookupRepository extends JpaRepository<YearLookup, Long> {
 	
 	YearLookup findByYearName(final String yearName);
+	YearLookup findById(final int id);
+
 
 }

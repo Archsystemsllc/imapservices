@@ -40,7 +40,8 @@ public class YearLookup implements Serializable {
 	private String yearName;
 
 	//bi-directional many-to-one association to Provider_Hypothesi
-	@JsonManagedReference
+	//@JsonManagedReference
+	@JsonIgnore
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "yearLookup", cascade = CascadeType.ALL)
 	private Set<ProviderHypothesis> providerHypothesis;
 

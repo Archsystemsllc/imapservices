@@ -32,7 +32,7 @@ public class CategoryLookupRestController {
 	@RequestMapping(value = "/category/all", method = RequestMethod.GET)
 	public List<CategoryLookup> getCategories(HttpServletRequest request, Principal currentUser){
 		log.debug("--> getCategories");
-		final List<CategoryLookup> categoryList = categoryLookupService.findAll();
+		List<CategoryLookup> categoryList = categoryLookupService.findAll();		 
 		log.debug("<-- getCategories");
         return categoryList;
 	}
