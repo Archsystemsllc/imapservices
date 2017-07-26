@@ -40,6 +40,17 @@ public class MeasureWiseExclusionRate implements Serializable {
 	
 	@Column(name="updated_by")
 	private String updatedBy;
+	
+	@Column(name="reporting_options")
+	private String reportingOptions;
+
+	public String getReportingOptions() {
+		return reportingOptions;
+	}
+
+	public void setReportingOptions(String reportingOptions) {
+		this.reportingOptions = reportingOptions;
+	}
 
 	//bi-directional many-to-one association to DataAnalysis
 	@ManyToOne
@@ -52,7 +63,7 @@ public class MeasureWiseExclusionRate implements Serializable {
 	private SubDataAnalysis subDataAnalysis;	
 
 	//bi-directional many-to-one association to YearLookup
-	@ManyToOne(cascade = {CascadeType.ALL})
+	@ManyToOne(fetch = FetchType.EAGER,cascade = {CascadeType.ALL})
 	@JoinColumn(name="year_id")
 	private YearLookup yearLookup;
 
@@ -65,6 +76,8 @@ public class MeasureWiseExclusionRate implements Serializable {
 	@ManyToOne(cascade = {CascadeType.ALL})
 	@JoinColumn(name="measure_lookup_id")
 	private MeasureLookup measureLookup;
+	
+	
 
 	public MeasureWiseExclusionRate() {
 	}
