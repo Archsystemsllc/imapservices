@@ -114,7 +114,7 @@ public class MeasureWiseExclusionRateRestController {
 				}
 			}
 		}
-		System.out.println("Data for Line Chart Data(AVAILABLE)::"+dataAvailable);
+		System.out.println("test Data for Line Chart Data(AVAILABLE)::"+dataAvailable);
 		lineChartDataMap.put("dataAvailable", dataAvailable);
 		
 		return lineChartDataMap;

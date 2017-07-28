@@ -20,7 +20,7 @@ public class ProviderHypothesisRestController {
 	@Autowired
 	private ProviderHypothesisService providerHypothesisService;
 	
-	@RequestMapping("/barChart/dataanalysis/{dataanalysis}/subdataanalysis/{subdataanalysis}/year/{year}/reportingOption/{reportingOption}")
+	@RequestMapping("/barChart/dataAnalysisId/{dataanalysis}/subDataAnalysisId/{subdataanalysis}/yearId/{year}/reportingOptionId/{reportingOption}")
 	public Map barChartDisplay(@PathVariable("dataanalysis") String dataAnalysisName, @PathVariable("subdataanalysis") String subdataAnalysisName, @PathVariable("year") String year, @PathVariable("reportingOption") String reportingOption) {
 		String dataAvailable = "NO";
 		Map barChartDataMap = new HashMap();
@@ -52,7 +52,7 @@ public class ProviderHypothesisRestController {
     }
 	
 	
-	@RequestMapping("/lineChart/dataanalysis/{dataanalysis}/subdataanalysis/{subdataanalysis}/parameter/{parameter}")
+	@RequestMapping("/lineChart/dataAnalysisId/{dataanalysis}/subDataAnalysisId/{subdataanalysis}/parameterId/{parameter}")
 	public Map lineChartDisplay(@PathVariable("dataanalysis") String dataAnalysisName, @PathVariable("subdataanalysis") String subdataAnalysisName, @PathVariable("parameter") String parameterName) {
 		Map lineChartDataMap = new HashMap();
 		String dataAvailable = "NO";
