@@ -24,6 +24,8 @@ public interface ExclusionTrendService {
 	 * @return
 	 */
 	public List<ExclusionTrend> findByDataAnalysisAndSubDataAnalysis(int dataAnalysisId, int subDataAnalysisId);
+	
+	List<ExclusionTrend> findByDataAnalysisAndSubDataAnalysisAndReportingOptionLookup(int dataAnalysisId, int subDataAnalysisId, int reportingOptionId);
 
 	public List<String> getUniqueYearsForLineChart();
 	

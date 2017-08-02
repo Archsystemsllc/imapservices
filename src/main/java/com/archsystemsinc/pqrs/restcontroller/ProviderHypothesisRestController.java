@@ -25,12 +25,13 @@ public class ProviderHypothesisRestController {
 		String dataAvailable = "NO";
 		Map barChartDataMap = new HashMap();
 		final List<ProviderHypothesis> providerHypothesisList = providerHypothesisService.findByDataAnalysisAndSubDataAnalysisAndYearLookupAndReportingOptionLookup(dataAnalysisName, subdataAnalysisName, year, reportingOption);
+		System.out.println("Size: " + providerHypothesisList.size());
 		// Preparing Parameter String Array
-		List<String> parameters = new ArrayList<String>();
-		List<Double> yesPercents = new ArrayList<Double>();
-		List<Double> noPercents = new ArrayList<Double>();
-		List<String> yesCountValues = new ArrayList<String>();
-		List<String> noCountValues = new ArrayList<String>();
+		List<String> parameters = new ArrayList<>();
+		List<Double> yesPercents = new ArrayList<>();
+		List<Double> noPercents = new ArrayList<>();
+		List<String> yesCountValues = new ArrayList<>();
+		List<String> noCountValues = new ArrayList<>();
 		
 		for (ProviderHypothesis providerHypothesis : providerHypothesisList){
 			parameters.add(providerHypothesis.getParameterLookup().getParameterName());

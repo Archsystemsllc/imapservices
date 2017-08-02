@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.archsystemsinc.pqrs.model.DataAnalysis;
 import com.archsystemsinc.pqrs.model.ExclusionTrend;
+import com.archsystemsinc.pqrs.model.ReportingOptionLookup;
 import com.archsystemsinc.pqrs.model.SubDataAnalysis;
 
 /**
@@ -27,5 +28,7 @@ public interface ExclusionTrendRepository extends JpaRepository<ExclusionTrend, 
 	 */
 	List<ExclusionTrend> findByDataAnalysisAndSubDataAnalysis(DataAnalysis dataAnalysis, SubDataAnalysis subDataAnalysis);
 
+	List<ExclusionTrend> findByDataAnalysisAndSubDataAnalysisAndReportingOptionLookup(DataAnalysis dataAnalysis, 
+			SubDataAnalysis subDataAnalysis, ReportingOptionLookup reportingOptionLookup);
 
 }
