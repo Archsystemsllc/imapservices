@@ -139,6 +139,8 @@ public class MeasureWiseExclusionRateImpl implements MeasureWiseExclusionRateSer
 			}else{
 				allowableExclusionsList.add(null);
 				reportingOptionsList.add(null);
+				//allowableExclusionsList.add("");
+				//reportingOptionsList.add("");
 			}
 			for (MeasureWiseExclusionRate measureWiseExclusionRate : measureWiseExclusionRateList){
 			    if (measureWiseExclusionRate.getYearLookup().getYearName().equalsIgnoreCase(YearNameEnum.ALL.getYearName())) continue;
@@ -190,47 +192,54 @@ public class MeasureWiseExclusionRateImpl implements MeasureWiseExclusionRateSer
 	private void translateReportingOptionsList(List<String> reportingOptionsList) {
 		int index = 0;
 		String temp = "";
+		if(reportingOptionsList != null)
+		System.out.println("Size:" + reportingOptionsList.size());
 		
 		for(String measureReportingOptions: reportingOptionsList){
-			String[] reportingOptions = measureReportingOptions.split(",");			
+			System.out.println("measureReportingOptions: " + measureReportingOptions);
+			String[] reportingOptions = null;
 			
-			for(String reportingOption:reportingOptions){
-				   if(reportingOption.equals("0")) break;
-				   
-					switch (reportingOption) {
-			         case "1":
-			        	 temp += "CLAIMS";
-			             break;
-			         case "2":
-			        	 temp += ", EHR";
-			             break;
-			         case "3":
-			        	 temp += ", REGISTRY";
-			             break;
-			         case "4":
-			        	 temp += ", GPROWI";
-			             break;
-			         case "5":
-			        	 temp += ", QCDR";
-			             break;
-			         case "6":
-			        	 temp += ", GPRO Registry";
-			             break;
-			         case "7":
-			        	 temp += ", GPRO EHR";
-			             break;
-			         case "8":
-			        	 temp += ", ALL";
-			             break;
-			         case "9":
-			        	 temp += ", ALL GPRO";
-			             break;
-			         case "10":
-			        	 temp += ", ALL EPs & GPRO";
-			             break;
-			         default:
-			        	 temp += ", None";
-			     }
+			if(measureReportingOptions != null){
+				reportingOptions = measureReportingOptions.split(",");			
+			
+				for(String reportingOption:reportingOptions){
+					   if(reportingOption.equals("0")) break;
+					   
+						switch (reportingOption) {
+				         case "1":
+				        	 temp += "CLAIMS";
+				             break;
+				         case "2":
+				        	 temp += ", EHR";
+				             break;
+				         case "3":
+				        	 temp += ", REGISTRY";
+				             break;
+				         case "4":
+				        	 temp += ", GPROWI";
+				             break;
+				         case "5":
+				        	 temp += ", QCDR";
+				             break;
+				         case "6":
+				        	 temp += ", GPRO Registry";
+				             break;
+				         case "7":
+				        	 temp += ", GPRO EHR";
+				             break;
+				         case "8":
+				        	 temp += ", ALL";
+				             break;
+				         case "9":
+				        	 temp += ", ALL GPRO";
+				             break;
+				         case "10":
+				        	 temp += ", ALL EPs & GPRO";
+				             break;
+				         default:
+				        	 temp += ", None";
+				     }
+				}
 			}
 			reportingOptionsList.set(index, temp);
 			temp = "";

@@ -15,9 +15,11 @@ import com.archsystemsinc.pqrs.constant.ReportingOptionEnum;
 import com.archsystemsinc.pqrs.constant.YearNameEnum;
 import com.archsystemsinc.pqrs.model.DataAnalysis;
 import com.archsystemsinc.pqrs.model.ExclusionTrend;
+import com.archsystemsinc.pqrs.model.ReportingOptionLookup;
 import com.archsystemsinc.pqrs.model.SubDataAnalysis;
 import com.archsystemsinc.pqrs.repository.DataAnalaysisRepository;
 import com.archsystemsinc.pqrs.repository.ExclusionTrendRepository;
+import com.archsystemsinc.pqrs.repository.ReportingOptionLookupRepository;
 import com.archsystemsinc.pqrs.repository.SubDataAnalysisRepository;
 import com.archsystemsinc.pqrs.service.ExclusionTrendService;
 
@@ -36,6 +38,9 @@ public class ExclusionTrendServiceImpl implements ExclusionTrendService {
 	
 	@Autowired
 	private SubDataAnalysisRepository subDataAnalysisRepository;
+	
+	@Autowired
+	private ReportingOptionLookupRepository reportingOptionLookupRepository;
 	
 	/**
 	 * 
@@ -150,6 +155,15 @@ public class ExclusionTrendServiceImpl implements ExclusionTrendService {
 		rpPercents.add(rpPercentMap.get(YearNameEnum.OPTIONAL_YEAR_1.getYearName()));
 		rpPercents.add(rpPercentMap.get(YearNameEnum.OPTIONAL_YEAR_2.getYearName()));
 		rpPercents.add(rpPercentMap.get(YearNameEnum.OPTIONAL_YEAR_3.getYearName()));
+	}
+
+	@Override
+	public List<ExclusionTrend> findByDataAnalysisAndSubDataAnalysisAndReportingOptionLookup(int dataAnalysisId,
+			int subDataAnalysisId, int reportingOptionId) {
+		DataAnalysis dataAnalysis = dataAnalaysisRepository.findById(dataAnalysisId);
+		SubDataAnalysis subDataAnalysis = subDataAnalysisRepository.findById(subDataAnalysisId);
+		ReportingOptionLookup reportingOptionLookup = reportingOptionLookupRepository.findById(reportingOptionId);
+	return exclusionTrendRepository.findByDataAnalysisAndSubDataAnalysisAndReportingOptionLookup(dataAnalysis, subDataAnalysis, reportingOptionLookup);
 	}
 
 }
