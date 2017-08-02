@@ -38,6 +38,14 @@ public class MeasureLookupRestController {
         return measureList;
 	}
 	
+	@RequestMapping(value = "/measure/search/{measureIdOrName}", method = RequestMethod.GET)
+	public List<MeasureLookup> searchMeasures(@PathVariable String measureIdOrName, HttpServletRequest request, Principal currentUser){
+		log.debug("--> getMeasures");
+		final List<MeasureLookup> measureList = measureLookupService.findByIdOrName(measureIdOrName);
+		log.debug("<-- getMeasures");
+        return measureList;
+	}
+	
 	@RequestMapping(value = "/measure/{measureId}", method = RequestMethod.GET)
 	public MeasureLookup getMeasureById(@PathVariable int measureId, HttpServletRequest request, Principal currentUser,final Model model){		
 		return measureLookupService.findById(measureId);

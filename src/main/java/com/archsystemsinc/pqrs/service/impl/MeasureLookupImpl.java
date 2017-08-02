@@ -29,4 +29,8 @@ public class MeasureLookupImpl implements MeasureLookupService{
 		return measureLookupRepository.findById(id);
 	}
 
+
+	public List<MeasureLookup> findByIdOrName(String idOrName) {
+		return measureLookupRepository.findByIdOrName(idOrName);
+	}
 }
