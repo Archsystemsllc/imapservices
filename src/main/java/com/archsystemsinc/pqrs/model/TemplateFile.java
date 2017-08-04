@@ -67,6 +67,10 @@ public class TemplateFile implements Serializable{
 	@Column(name = "record_status",nullable = true)
 	private int recordStatus;
 	
+	/** uploaded file title*/
+    @Column(name = "uploaded_title", nullable = true)
+    private String uploadedTitle;
+	
 	@Transient
 	private MultipartFile uploadFile;
 	
@@ -156,6 +160,13 @@ public class TemplateFile implements Serializable{
 
 	public void setRecordStatus(int recordStatus) {
 		this.recordStatus = recordStatus;
+	}
+	public String getUploadedTitle() {
+        return uploadedTitle;
+	}
+
+	public void setUploadedTitle(String uploadedTitle) {
+        this.uploadedTitle = uploadedTitle;
 	}
 
 }
