@@ -21,4 +21,5 @@ public interface MeasureWiseExclusionRateService {
 			List<String> reportingOptionsList, List<Double> measure1Data,  List<Double> measure2Data, List<Double> measure3Data,  List<Double> measure4Data);
 	boolean setFreqValue(int dataAnalysisId, int subdataAnalysisId, List<Integer> measureLookupIdList, List<String> allowableExclusionsList, 
 			List<String> reportingOptionsList, List<Integer> measure1Data,  List<Integer> measure2Data,	List<Integer> measure3Data,  List<Integer> measure4Data);
+	MeasureWiseExclusionRate create(final MeasureWiseExclusionRate measureWiseExclusionRate);
 }

@@ -24,9 +24,7 @@ public class MeasureLookup implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int id;
 
-	private String comment;	
-
-	private String description;
+	private String comment;		
 	
 	@Column(name="measure_id")
 	private String measureId;
@@ -86,15 +84,7 @@ public class MeasureLookup implements Serializable {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
-	}
-
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
+	}	
 
 	public String getMeasureId() {
 		return this.measureId;

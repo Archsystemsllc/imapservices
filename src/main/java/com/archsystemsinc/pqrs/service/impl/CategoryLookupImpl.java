@@ -28,4 +28,9 @@ public class CategoryLookupImpl implements CategoryLookupService{
 	public CategoryLookup findById(int id) {		
 		return categoryLookupRepository.findById(id);
 	}
+
+	@Override
+	public CategoryLookup findByName(String name) {
+		return categoryLookupRepository.findByName(name);
+	}
 }

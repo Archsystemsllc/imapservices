@@ -12,4 +12,5 @@ import com.archsystemsinc.pqrs.model.CategoryLookup;
  */
 public interface CategoryLookupRepository extends JpaRepository<CategoryLookup,Long>{	
 	CategoryLookup findById(final int id);
+	CategoryLookup findByName(final String name);
 }

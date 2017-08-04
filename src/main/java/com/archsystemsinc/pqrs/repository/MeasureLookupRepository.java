@@ -15,6 +15,8 @@ import com.archsystemsinc.pqrs.model.MeasureLookup;
 public interface MeasureLookupRepository extends JpaRepository<MeasureLookup,Long>{
 	MeasureLookup findById(final int id);
 	
+	MeasureLookup findByMeasureId(final String id);
+	
 	@Query("select m from MeasureLookup m where m.measureId like %:idOrName% or m.measureName like %:idOrName% ")
 	public List<MeasureLookup> findByIdOrName(@Param("idOrName") String idOrName);
 }

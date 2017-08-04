@@ -253,6 +253,11 @@ public class MeasureWiseExclusionRateImpl implements MeasureWiseExclusionRateSer
 		return measureWiseExclusionRateRepository.findByDataAnalysisAndSubDataAnalysis(dataAnalysis, SubDataAnalysis);
 	}
 
+	@Override
+	public MeasureWiseExclusionRate create(MeasureWiseExclusionRate measureWiseExclusionRate) {
+		return measureWiseExclusionRateRepository.saveAndFlush(measureWiseExclusionRate);
+	}
+
 	
 
 }

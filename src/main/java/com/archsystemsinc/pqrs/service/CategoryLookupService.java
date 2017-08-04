@@ -12,4 +12,5 @@ public interface CategoryLookupService {
 	
 	List<CategoryLookup> findAll();
 	CategoryLookup findById(final int id);
+	CategoryLookup findByName(final String name);
 }
