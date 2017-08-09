@@ -17,7 +17,7 @@ public interface MeasureWiseExclusionRateService {
 	MeasureWiseExclusionRate findById(final int id);
 	List<MeasureWiseExclusionRate> findByDataAnalysisAndSubDataAnalysis(DataAnalysis dataAnalysis, SubDataAnalysis SubDataAnalysis);
 	List<MeasureWiseExclusionRate> findByMeasureLookupAndDataAnalysisAndSubDataAnalysis(MeasureLookup measureLookup, DataAnalysis dataAnalysis, SubDataAnalysis SubDataAnalysis);
-	boolean setValue(int dataAnalysisId, int subdataAnalysisId, List<Integer> measureLookupIdList, List<String> allowableExclusionsList, 
+	boolean setExclusionValue(int dataAnalysisId, int subdataAnalysisId, List<Integer> measureLookupIdList, List<String> allowableExclusionsList, 
 			List<String> reportingOptionsList, List<Double> measure1Data,  List<Double> measure2Data, List<Double> measure3Data,  List<Double> measure4Data);
 	boolean setFreqValue(int dataAnalysisId, int subdataAnalysisId, List<Integer> measureLookupIdList, List<String> allowableExclusionsList, 
 			List<String> reportingOptionsList, List<Integer> measure1Data,  List<Integer> measure2Data,	List<Integer> measure3Data,  List<Integer> measure4Data);

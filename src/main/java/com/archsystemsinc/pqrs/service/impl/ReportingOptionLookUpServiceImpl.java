@@ -41,4 +41,9 @@ public class ReportingOptionLookUpServiceImpl implements ReportingOptionLookUpSe
 		return reportingOptionLookupRepository.findAll();
 	}
 
+	@Override
+	public ReportingOptionLookup findById(int id) {		
+		return reportingOptionLookupRepository.findById(id);
+	}
+
 }

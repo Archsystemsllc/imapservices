@@ -60,7 +60,7 @@ public class MeasureWiseExclusionRateImpl implements MeasureWiseExclusionRateSer
 	 * 
 	 */
 	@Override
-	public boolean setValue(int dataAnalysisId, int subdataAnalysisId,List<Integer> measureLookupIdList, List<String> allowableExclusionsList, 
+	public boolean setExclusionValue(int dataAnalysisId, int subdataAnalysisId,List<Integer> measureLookupIdList, List<String> allowableExclusionsList, 
 			List<String> reportingOptionsList, List<Double> measure1Data, List<Double> measure2Data, List<Double> measure3Data, List<Double> measure4Data) {
 		
 		Map<String, Double> measure1Map = null;

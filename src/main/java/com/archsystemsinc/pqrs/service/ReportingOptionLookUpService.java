@@ -16,6 +16,8 @@ import com.archsystemsinc.pqrs.model.ReportingOptionLookup;
  */
 public interface ReportingOptionLookUpService {
 
+	ReportingOptionLookup findById(final int id);
+	
 	ReportingOptionLookup findByReportingOptionName(final String reportingOptionName);
 	
 	List<ReportingOptionLookup> findAll();
