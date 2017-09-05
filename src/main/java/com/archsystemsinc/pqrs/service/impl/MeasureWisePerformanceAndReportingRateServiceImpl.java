@@ -14,6 +14,7 @@ import com.archsystemsinc.pqrs.model.MeasureWisePerformanceAndReportingRate;
 import com.archsystemsinc.pqrs.model.ReportingOptionLookup;
 import com.archsystemsinc.pqrs.model.SubDataAnalysis;
 import com.archsystemsinc.pqrs.repository.MeasureWisePerformanceAndReportingRateRepository;
+import com.archsystemsinc.pqrs.repository.impl.Hypothesis4and6Repository;
 import com.archsystemsinc.pqrs.service.DataAnalysisService;
 import com.archsystemsinc.pqrs.service.MeasureLookupService;
 import com.archsystemsinc.pqrs.service.MeasureWisePerformanceAndReportingRateService;
@@ -37,6 +38,9 @@ public class MeasureWisePerformanceAndReportingRateServiceImpl implements Measur
 	
 	@Autowired
 	private ReportingOptionLookUpService reportingOptionLookUpService;
+	
+	@Autowired
+	private Hypothesis4and6Repository hypothesis4and6Repository;
 	
 	@Override
 	public MeasureWisePerformanceAndReportingRate findById(int id) {		
@@ -81,8 +85,10 @@ public class MeasureWisePerformanceAndReportingRateServiceImpl implements Measur
 		
 		for (Integer measureLookupId : measureLookupIdList){
 			
-			measureWisePerformanceAndReportingRateList = measureWisePerformanceAndReportingRateRepository.findByMeasureLookupAndDataAnalysisAndSubDataAnalysisAndReportingOptionLookup(measureLookupService.findById(measureLookupId), 
-					dataAnalysisService.findById(dataAnalysisId), subDataAnalysisService.findById(subdataAnalysisId), reportingOptionLookUpService.findById(reportingOptionId));
+			//measureWisePerformanceAndReportingRateList = measureWisePerformanceAndReportingRateRepository.findByMeasureLookupAndDataAnalysisAndSubDataAnalysisAndReportingOptionLookup(measureLookupService.findById(measureLookupId), 
+					//dataAnalysisService.findById(dataAnalysisId), subDataAnalysisService.findById(subdataAnalysisId), reportingOptionLookUpService.findById(reportingOptionId));
+
+			measureWisePerformanceAndReportingRateList = hypothesis4and6Repository.getMeasureWisePerformanceAndReportingRateList(measureLookupId,dataAnalysisId,subdataAnalysisId, reportingOptionId);
 
 			for (MeasureWisePerformanceAndReportingRate measureWisePerformanceAndReportingRate : measureWisePerformanceAndReportingRateList){
 			    if (measureWisePerformanceAndReportingRate.getYearLookup().getYearName().equalsIgnoreCase(YearNameEnum.ALL.getYearName())) continue;
@@ -127,9 +133,11 @@ public class MeasureWisePerformanceAndReportingRateServiceImpl implements Measur
 		
 		for (Integer measureLookupId : measureLookupIdList){
 			
-			measureWisePerformanceAndReportingRateList = measureWisePerformanceAndReportingRateRepository.findByMeasureLookupAndDataAnalysisAndSubDataAnalysisAndReportingOptionLookup(measureLookupService.findById(measureLookupId), 
-					dataAnalysisService.findById(dataAnalysisId), subDataAnalysisService.findById(subdataAnalysisId), reportingOptionLookUpService.findById(reportingOptionId));
+			//measureWisePerformanceAndReportingRateList = measureWisePerformanceAndReportingRateRepository.findByMeasureLookupAndDataAnalysisAndSubDataAnalysisAndReportingOptionLookup(measureLookupService.findById(measureLookupId), 
+					//dataAnalysisService.findById(dataAnalysisId), subDataAnalysisService.findById(subdataAnalysisId), reportingOptionLookUpService.findById(reportingOptionId));
 
+			measureWisePerformanceAndReportingRateList = hypothesis4and6Repository.getMeasureWisePerformanceAndReportingRateList(measureLookupId,dataAnalysisId,subdataAnalysisId, reportingOptionId);
+			
 			for (MeasureWisePerformanceAndReportingRate measureWisePerformanceAndReportingRate : measureWisePerformanceAndReportingRateList){
 			    if (measureWisePerformanceAndReportingRate.getYearLookup().getYearName().equalsIgnoreCase(YearNameEnum.ALL.getYearName())) continue;
 			    

@@ -15,6 +15,7 @@ import com.archsystemsinc.pqrs.model.MeasureWiseExclusionRate;
 import com.archsystemsinc.pqrs.model.ProviderHypothesis;
 import com.archsystemsinc.pqrs.model.SubDataAnalysis;
 import com.archsystemsinc.pqrs.repository.MeasureWiseExclusionRateRepository;
+import com.archsystemsinc.pqrs.repository.impl.Hypothesis5Repository;
 import com.archsystemsinc.pqrs.service.DataAnalysisService;
 import com.archsystemsinc.pqrs.service.MeasureLookupService;
 import com.archsystemsinc.pqrs.service.MeasureWiseExclusionRateService;
@@ -38,6 +39,9 @@ public class MeasureWiseExclusionRateImpl implements MeasureWiseExclusionRateSer
 	
 	@Autowired
 	private SubDataAnalysisService subDataAnalysisService;
+	
+	@Autowired
+	private Hypothesis5Repository hypothesis5Repository;
 	
 	@Override
 	public List<MeasureWiseExclusionRate> findAll() {		
@@ -78,8 +82,11 @@ public class MeasureWiseExclusionRateImpl implements MeasureWiseExclusionRateSer
 		
 		for (Integer measureLookupId : measureLookupIdList){
 			
-			measureWiseExclusionRateList = measureWiseExclusionRateRepository.findByMeasureLookupAndDataAnalysisAndSubDataAnalysis(measureLookupService.findById(measureLookupId), 
-					dataAnalysisService.findById(dataAnalysisId), subDataAnalysisService.findById(subdataAnalysisId));
+			//measureWiseExclusionRateList = measureWiseExclusionRateRepository.findByMeasureLookupAndDataAnalysisAndSubDataAnalysis(measureLookupService.findById(measureLookupId), 
+					//dataAnalysisService.findById(dataAnalysisId), subDataAnalysisService.findById(subdataAnalysisId));
+			
+			measureWiseExclusionRateList = hypothesis5Repository.getMeasureWiseExclusionRateList(measureLookupId, dataAnalysisId, subdataAnalysisId);
+			
 			if(!measureWiseExclusionRateList.isEmpty()){ 
 				allowableExclusionsList.add(measureWiseExclusionRateList.get(0).getExclusionDecisions());
 				reportingOptionsList.add(measureWiseExclusionRateList.get(0).getReportingOptions());
@@ -131,8 +138,11 @@ public class MeasureWiseExclusionRateImpl implements MeasureWiseExclusionRateSer
 		
 		for (Integer measureLookupId : measureLookupIdList){
 			
-			measureWiseExclusionRateList = measureWiseExclusionRateRepository.findByMeasureLookupAndDataAnalysisAndSubDataAnalysis(measureLookupService.findById(measureLookupId), 
-					dataAnalysisService.findById(dataAnalysisId), subDataAnalysisService.findById(subdataAnalysisId));
+			//measureWiseExclusionRateList = measureWiseExclusionRateRepository.findByMeasureLookupAndDataAnalysisAndSubDataAnalysis(measureLookupService.findById(measureLookupId), 
+					//dataAnalysisService.findById(dataAnalysisId), subDataAnalysisService.findById(subdataAnalysisId));
+			
+			measureWiseExclusionRateList = hypothesis5Repository.getMeasureWiseExclusionRateList(measureLookupId, dataAnalysisId, subdataAnalysisId);
+			
 			if(!measureWiseExclusionRateList.isEmpty()){ 
 				allowableExclusionsList.add(measureWiseExclusionRateList.get(0).getExclusionDecisions());
 				reportingOptionsList.add(measureWiseExclusionRateList.get(0).getReportingOptions());
